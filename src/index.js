@@ -18,11 +18,9 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter basename={`sampleapp.html#`}>
-        <OldUserCotnext.Provider value = {{oldData, setOldData}}>
         <Route path="/home" component={Home} />
         <Route path="/sample1" component={Sample1} />
         <Route path="/sample2" component={Sample2} />
-        </OldUserCotnext.Provider>
       </BrowserRouter>
     );
   }

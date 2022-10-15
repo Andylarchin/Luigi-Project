@@ -7,12 +7,9 @@ import Swal from 'sweetalert2';
 import { OldUserCotnext } from '../oldUserContext';
 
 const Sample2 = () => {
+  const [usernam, setUsernam] = useState('Nate');
 
   const ref = collection(database, 'users');
-
-  const [oldData,setOldData] = useContext(OldUserCotnext);
-
-  console.log(oldData);
 
   const {
     register,
@@ -128,7 +125,7 @@ const Sample2 = () => {
                           Swal.fire(
                             'Great job!',
                             'You succesfully logged in your account',
-                            'success'
+                            'success',
                           ).then((result) => {
                             if (result.isConfirmed) {
                               document.getElementById('usernameInput').value = '';
@@ -136,16 +133,14 @@ const Sample2 = () => {
                             }
                           });
                         } else {
-                          Swal.fire('Ooops...', 'Something went wrong!', 'error').then(
-                            (result) => {
-                              if (result.isConfirmed) {
-                                document.getElementById('usernameInput').value = '';
-                                document.getElementById('passwordInput').value = '';
-                              }
+                          Swal.fire('Ooops...', 'Something went wrong!', 'error').then((result) => {
+                            if (result.isConfirmed) {
+                              document.getElementById('usernameInput').value = '';
+                              document.getElementById('passwordInput').value = '';
                             }
-                          );
+                          });
                         }
-                      } );
+                      });
                     }}
                   >
                     Log in
@@ -155,7 +150,16 @@ const Sample2 = () => {
                     className="block w-full bg-gray-800 text-white font-bold p-4 rounded-lg text-xs uppercase tracking-[0,5px]"
                     type="button"
                     // Loop though the users data and check if the current input matches the data on the firebase database
-                    onClick={() => {}}
+                    onClick={() => {
+                      Swal.fire('Ooops...', 'This function is under work :D', 'error').then(
+                        (result) => {
+                          if (result.isConfirmed) {
+                            document.getElementById('usernameInput').value = '';
+                            document.getElementById('passwordInput').value = '';
+                          }
+                        },
+                      );
+                    }}
                   >
                     Update User
                   </button>
