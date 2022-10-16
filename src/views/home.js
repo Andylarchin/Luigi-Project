@@ -39,10 +39,10 @@ export default class Home extends Component {
     return (
       <div>
         <section className="fd-section">
-          <div className="fd-section__header">
-            <h1 className="fd-section__title">Home</h1>
+          <div className="items-center text-center">
+            <h1 className="fd-section__title">Welcome to my Portfolio</h1>
           </div>
-          <div className="fd-panel">{this.state.message}</div>
+          <div className="fd-panel"></div>
         </section>
       </div>
     );

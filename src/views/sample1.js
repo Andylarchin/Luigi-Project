@@ -1,12 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import '../../node_modules/fundamental-styles/dist/fundamental-styles.css';
 import '../index.css';
 
+import { Board } from '../components/Board';
+import { ResetButton } from '../components/Reset-button';
+import { ScoreBoard } from '../components/ScoreBoard';
+
 const Sample1 = () => {
- 
-  const X_CLASS = 'x';
-  const CIRCLE_CLASS = 'circle';
-  const WINNING_COMBINATIONS = [
+  const WIN_CONDITIONS = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -16,100 +17,65 @@ const Sample1 = () => {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  const cellElements = document.querySelectorAll('[data-cell]');
-  const board = document.getElementById('board');
-  const winningMessageElement = document.getElementById('winningMessage');
-  const restartButton = document.getElementById('restartButton');
-  const winningMessageTextElement = document.querySelector('[data-winning-message-text]');
-  let circleTurn;
 
-  // startGame();
+  const [xPlaying, setXPlaying] = useState(true);
+  const [board, setBoard] = useState(Array(9).fill(null));
+  const [scores, setScores] = useState({ xScore: 0, oScore: 0 });
+  const [gameOver, setGameOver] = useState(false);
 
-  // restartButton.addEventListener('click', startGame);
+  const handleBoxClick = (boxIdx) => {
+    // Step 1: Update the board
+    const updatedBoard = board.map((value, idx) => {
+      if (idx === boxIdx) {
+        return xPlaying ? 'X' : 'O';
+      } else {
+        return value;
+      }
+    });
 
-  // function startGame() {
-  //   circleTurn = false;
-  //   cellElements.forEach((cell) => {
-  //     cell.classList.remove(X_CLASS);
-  //     cell.classList.remove(CIRCLE_CLASS);
-  //     cell.removeEventListener('click', handleClick);
-  //     cell.addEventListener('click', handleClick, { once: true });
-  //   });
-  //   setBoardHoverClass();
-  //   winningMessageElement.classList.remove('show');
-  // }
+    setBoard(updatedBoard);
 
-  // const handleClick = (e) => {
-  //   const cell = e.target;
-  //   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS;
-  //   placeMark(cell, currentClass);
-  //   if (checkWin(currentClass)) {
-  //     endGame(false);
-  //   } else if (isDraw()) {
-  //     endGame(true);
-  //   } else {
-  //     swapTurns();
-  //     setBoardHoverClass();
-  //   }
-  // }
+    // Step 2: Check if either player has won the game
+    const winner = checkWinner(updatedBoard);
 
-  // const endGame = (draw) => {
-  //   if (draw) {
-  //     winningMessageTextElement.innerText = 'Draw!';
-  //   } else {
-  //     winningMessageTextElement.innerText = `${circleTurn ? "O's" : "X's"} Wins!`;
-  //   }
-  //   winningMessageElement.classList.add('show');
-  // }
+    if (winner) {
+      if (winner === 'O') {
+        let { oScore } = scores;
+        oScore += 1;
+        setScores({ ...scores, oScore });
+      } else {
+        let { xScore } = scores;
+        xScore += 1;
+        setScores({ ...scores, xScore });
+      }
+    }
 
-  // const isDraw = () => {
-  //   return [...cellElements].every((cell) => {
-  //     return cell.classList.contains(X_CLASS) || cell.classList.contains(CIRCLE_CLASS);
-  //   });
-  // }
+    // Step 3: Change active player
+    setXPlaying(!xPlaying);
+  };
 
-  // const placeMark = (cell, currentClass) =>  {
-  //   cell.classList.add(currentClass);
-  // }
+  const checkWinner = (board) => {
+    for (let i = 0; i < WIN_CONDITIONS.length; i++) {
+      const [x, y, z] = WIN_CONDITIONS[i];
 
-  // const swapTurns = () => {
-  //   circleTurn = !circleTurn;
-  // }
+      // Iterate through win conditions and check if either player satisfies them
+      if (board[x] && board[x] === board[y] && board[y] === board[z]) {
+        setGameOver(true);
+        return board[x];
+      }
+    }
+  };
 
-  // const setBoardHoverClass = () => {
-  //   board.classList.remove(X_CLASS);
-  //   board.classList.remove(CIRCLE_CLASS);
-  //   if (circleTurn) {
-  //     board.classList.add(CIRCLE_CLASS);
-  //   } else {
-  //     board.classList.add(X_CLASS);
-  //   }
-  // }
+  const resetBoard = () => {
+    setGameOver(false);
+    setBoard(Array(9).fill(null));
+  };
 
-  // function checkWin(currentClass) {
-  //   return WINNING_COMBINATIONS.some((combination) => {
-  //     return combination.every((index) => {
-  //       return cellElements[index].classList.contains(currentClass);
-  //     });
-  //   });
-  // }
   return (
-    <div>
-      <div class="board" id="board">
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-      </div>
-      <div class="winning-message" id="winningMessage">
-        <div data-winning-message-text></div>
-        <button id="restartButton">Restart</button>
-      </div>
+    <div className="App">
+      <ScoreBoard scores={scores} xPlaying={xPlaying} />
+      <Board board={board} onClick={gameOver ? resetBoard : handleBoxClick} />
+      <ResetButton resetBoard={resetBoard} />
     </div>
   );
 };

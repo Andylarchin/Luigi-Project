@@ -24,7 +24,7 @@ Luigi.setConfig({
     ],
   },
   settings: {
-    header: { title: 'Andy Portfolio',},
+    header: { title: 'Andy Portfolio' },
     responsiveNavigation: 'simpleMobileOnly',
   },
 });
