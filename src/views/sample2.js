@@ -1,11 +1,11 @@
-import React, { Component, useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import '../../node_modules/fundamental-styles/dist/fundamental-styles.css';
 import { useForm } from 'react-hook-form';
 import { collection, addDoc, getDocs } from '@firebase/firestore';
 import { database } from '../firebase-config';
 import detectBrowserLanguage from 'detect-browser-language';
 import Swal from 'sweetalert2';
-// import {useNavigate} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 import { OldUserCotnext } from '../oldUserContext';
 
@@ -13,7 +13,7 @@ import { OldUserCotnext } from '../oldUserContext';
 const Sample2 = () => {
 
    const { t, i18n } = useTranslation();
-  //  const navigate = useNavigate();
+   const navigate = useHistory();
    const refer = collection(database, 'users');
 
    const { setOldData } = useContext(OldUserCotnext);
@@ -75,7 +75,7 @@ const Sample2 = () => {
    const updateFunc = () => {
      if (user.length > 0 && urpassword.length > 0) {
        updateUser(userId, password, username);
-       navigate('/reset');
+       navigate.push('/sample3');
      } else {
        Swal.fire(`${t('errpop')}`, `${t('subwarning')}`, 'error').then((result) => {
          if (result.isConfirmed) {

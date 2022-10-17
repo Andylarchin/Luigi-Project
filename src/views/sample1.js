@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import '../../node_modules/fundamental-styles/dist/fundamental-styles.css';
 import '../index.css';
 
-import { Board } from '../components/Board';
-import { ResetButton } from '../components/Reset-button';
-import { ScoreBoard } from '../components/ScoreBoard';
+import { Board } from '../components/Board/Board';
+import { ResetButton } from '../components/Reset/Reset-button';
+import { ScoreBoard } from '../components/ScoreBoard/ScoreBoard';
 
 const Sample1 = () => {
   const WIN_CONDITIONS = [

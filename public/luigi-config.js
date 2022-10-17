@@ -19,6 +19,12 @@ Luigi.setConfig({
             icon: 'paper-plane',
             viewUrl: '/sampleapp.html#/sample2',
           },
+          {
+            pathSegment: 'sample3',
+            label: 'Register form',
+            icon: 'paper-plane',
+            viewUrl: '/sampleapp.html#/sample3',
+          },
         ],
       },
     ],
