@@ -71,7 +71,7 @@
   },
   "scripts": {
     "buildConfig": "webpack --config webpack.config.js",
-    "start": "node scripts/start.js",
+    "start": "webpack serve --open --mode development",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
