@@ -32,7 +32,7 @@ Luigi.setConfig({
   },
   settings: {
     header: {
-      title: 'Luigi React App',
+      title: 'Luigi React App', icon: "paper-plane",
       logo: '/logo.png'
     },
     responsiveNavigation: 'simpleMobileOnly'

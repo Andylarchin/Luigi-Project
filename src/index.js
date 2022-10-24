@@ -6,11 +6,7 @@ import App from './App';
 import './i18n';
 import { createRoot } from 'react-dom/client';
 
-
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 
-
-root.render(
-    <App />
-);
+root.render(<App />);

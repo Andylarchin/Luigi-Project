@@ -42,6 +42,8 @@ const Sample3 = () => {
         await updateDoc(userDoc, newfield);
       };
 
+      console.log('component has been loaded');
+
       i18n.changeLanguage(detectBrowserLanguage());
 
       updateUser();

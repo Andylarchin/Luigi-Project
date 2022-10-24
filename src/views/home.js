@@ -4,28 +4,28 @@ import {
   addInitListener,
   addContextUpdateListener,
   removeContextUpdateListener,
-  removeInitListener
+  removeInitListener,
 } from '@luigi-project/client';
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: ''
+      message: '',
     };
     this.initListener = null;
     this.contextUpdateListener = null;
   }
 
   componentDidMount() {
-    this.initListener = addInitListener(initialContext => {
+    this.initListener = addInitListener((initialContext) => {
       this.setState({
-        message: 'Luigi Client initialized.'
+        message: 'Luigi Client initialized.',
       });
     });
-    this.contextUpdateListener = addContextUpdateListener(updatedContext => {
+    this.contextUpdateListener = addContextUpdateListener((updatedContext) => {
       this.setState({
-        message: 'Luigi Client updated.'
+        message: 'Luigi Client updated.',
       });
     });
   }
@@ -43,6 +43,7 @@ export default class Home extends Component {
             <h1 className="fd-section__title">Welcome to my Portfolio</h1>
           </div>
           <div className="fd-panel"></div>
+          <RemoteApp/>
         </section>
       </div>
     );
