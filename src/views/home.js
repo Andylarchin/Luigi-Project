@@ -43,7 +43,6 @@ export default class Home extends Component {
             <h1 className="fd-section__title">Welcome to my Portfolio</h1>
           </div>
           <div className="fd-panel"></div>
-          <RemoteApp/>
         </section>
       </div>
     );

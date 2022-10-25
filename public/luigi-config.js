@@ -8,22 +8,22 @@ Luigi.setConfig({
         viewUrl: '/sampleapp.html#/home',
         children: [
           {
-            pathSegment: 'sample1',
-            label: 'Tic Tac Toe',
-            icon: 'nutrition-activity',
-            viewUrl: '/sampleapp.html#/sample1',
+            icon: 'paper-plane',
+            pathSegment: 'empty',
+            label: 'TicTacToe',
+            loadingIndicator: {
+              enabled: false,
+            },
+            viewUrl: 'http://localhost:4001/',
           },
           {
-            pathSegment: 'sample2',
-            label: 'Login form',
             icon: 'paper-plane',
-            viewUrl: '/sampleapp.html#/sample2',
-          },
-          {
-            pathSegment: 'sample3',
-            label: 'Register form',
-            icon: 'paper-plane',
-            viewUrl: '/sampleapp.html#/sample3',
+            pathSegment: 'home',
+            label: 'Login Form',
+            loadingIndicator: {
+              enabled: false,
+            },
+            viewUrl: 'http://localhost:5173/',
           },
         ],
       },

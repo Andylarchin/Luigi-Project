@@ -76,6 +76,7 @@ const Sample1 = () => {
       <ScoreBoard scores={scores} xPlaying={xPlaying} />
       <Board board={board} onClick={gameOver ? resetBoard : handleBoxClick} />
       <ResetButton resetBoard={resetBoard} />
+      <h1>AAAAAAA</h1>
     </div>
   );
 };
