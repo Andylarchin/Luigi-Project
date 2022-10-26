@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import '../../node_modules/fundamental-styles/dist/fundamental-styles.css';
 import {
   addInitListener,

@@ -7,6 +7,8 @@ import { ResetButton } from '../components/Reset/Reset-button';
 import { ScoreBoard } from '../components/ScoreBoard/ScoreBoard';
 
 const Sample1 = () => {
+
+
   const WIN_CONDITIONS = [
     [0, 1, 2],
     [3, 4, 5],

@@ -1,4 +1,11 @@
 Luigi.setConfig({
+  communication: {
+    customMessagesListeners: {
+      localmessage: (customMessage) => {
+        console.log(customMessage.message);
+      },
+    },
+  },
   navigation: {
     nodes: () => [
       {
@@ -34,3 +41,21 @@ Luigi.setConfig({
     responsiveNavigation: 'simpleMobileOnly',
   },
 });
+// setInterval(() => {
+//   let id = Luigi.elements().getMicrofrontends().map(data => {
+//     return data.id;
+//   })[0];
+
+//   Luigi.customMessages().send(id, {
+//     id: 'myapp.project-updated',
+//     dataField1: 'here goes some data',
+//     moreData: 'here goes some more',
+//   });
+// }, [1000]);
+
+  Luigi.customMessages().sendToAll({
+    id: 'myapp.project-updated',
+    dataField1: 'here goes some data',
+    moreData: 'here goes some more',
+  });
+

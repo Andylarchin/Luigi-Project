@@ -7,6 +7,8 @@ import Sample3 from './views/sample3.js';
 import { createBrowserHistory } from 'history';
 import './index.css';
 import { OldUserCotnext } from './oldUserContext';
+import LuigiClient from '@luigi-project/client';
+
 
 const appHistory = createBrowserHistory();
 
