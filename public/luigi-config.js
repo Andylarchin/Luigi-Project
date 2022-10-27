@@ -1,8 +1,17 @@
+const data = ['a', 'b', 'c'];
+
 Luigi.setConfig({
   communication: {
     customMessagesListeners: {
-      localmessage: (customMessage) => {
-        console.log(customMessage.message);
+      localmessage: function (customMessage) {
+        if (customMessage.message.length > 0) {
+          console.log(customMessage.message);
+          data.push(customMessage.message);
+        }
+        Luigi.customMessages().sendToAll({
+          id: 'aye',
+          data: data,
+        });
       },
     },
   },
@@ -18,18 +27,12 @@ Luigi.setConfig({
             icon: 'paper-plane',
             pathSegment: 'empty',
             label: 'TicTacToe',
-            loadingIndicator: {
-              enabled: false,
-            },
             viewUrl: 'http://localhost:4001/',
           },
           {
             icon: 'paper-plane',
             pathSegment: 'home',
             label: 'Login Form',
-            loadingIndicator: {
-              enabled: false,
-            },
             viewUrl: 'http://localhost:5173/',
           },
         ],
@@ -41,21 +44,3 @@ Luigi.setConfig({
     responsiveNavigation: 'simpleMobileOnly',
   },
 });
-// setInterval(() => {
-//   let id = Luigi.elements().getMicrofrontends().map(data => {
-//     return data.id;
-//   })[0];
-
-//   Luigi.customMessages().send(id, {
-//     id: 'myapp.project-updated',
-//     dataField1: 'here goes some data',
-//     moreData: 'here goes some more',
-//   });
-// }, [1000]);
-
-  Luigi.customMessages().sendToAll({
-    id: 'myapp.project-updated',
-    dataField1: 'here goes some data',
-    moreData: 'here goes some more',
-  });
-
