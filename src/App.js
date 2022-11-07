@@ -1,4 +1,4 @@
-import React, { Component, useState, useMemo } from 'react';
+import React, { Component, useState, useMemo} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './views/home.js';
 import Sample1 from './views/sample1.js';
@@ -8,7 +8,6 @@ import { createBrowserHistory } from 'history';
 import './index.css';
 import { OldUserCotnext } from './oldUserContext';
 import LuigiClient from '@luigi-project/client';
-
 
 const appHistory = createBrowserHistory();
 

@@ -1,17 +1,16 @@
-const data = ['a', 'b', 'c'];
-
 Luigi.setConfig({
   communication: {
     customMessagesListeners: {
       localmessage: function (customMessage) {
-        if (customMessage.message.length > 0) {
-          console.log(customMessage.message);
-          data.push(customMessage.message);
-        }
-        Luigi.customMessages().sendToAll({
-          id: 'aye',
-          data: data,
-        });
+          if (Object.keys(customMessage.message).length > 0) {
+            localStorage.setItem('StorageData', JSON.stringify(customMessage.message));
+            console.log(JSON.parse(localStorage.getItem('StorageData')))
+            console.log(`Local Storage Data: ${localStorage.getItem('StorageData')}`);
+          }
+            Luigi.customMessages().sendToAll({
+              id: 'aye',
+              data: JSON.parse(localStorage.getItem('StorageData')),
+            });
       },
     },
   },

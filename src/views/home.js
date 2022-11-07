@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import '../../node_modules/fundamental-styles/dist/fundamental-styles.css';
 import {
   addInitListener,
@@ -6,6 +6,7 @@ import {
   removeContextUpdateListener,
   removeInitListener,
 } from '@luigi-project/client';
+import LuigiClient from '@luigi-project/client';
 
 export default class Home extends Component {
   constructor(props) {
@@ -36,6 +37,12 @@ export default class Home extends Component {
   }
 
   render() {
+    console.log(
+      'local storage: ',
+      LuigiClient.storageManager()
+        .getItem('Luigi#localhost:4001#lonzo')
+        .then((value) => console.log(value)),
+    );
     return (
       <div>
         <section className="fd-section">
