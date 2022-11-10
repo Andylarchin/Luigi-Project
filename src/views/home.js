@@ -37,12 +37,6 @@ export default class Home extends Component {
   }
 
   render() {
-    console.log(
-      'local storage: ',
-      LuigiClient.storageManager()
-        .getItem('Luigi#localhost:4001#lonzo')
-        .then((value) => console.log(value)),
-    );
     return (
       <div>
         <section className="fd-section">
