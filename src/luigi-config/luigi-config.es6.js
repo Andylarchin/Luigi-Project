@@ -1,40 +1,64 @@
-Luigi.setConfig({
-  navigation: {
-    nodes: () => [
-      {
-        pathSegment: 'home',
-        label: 'Home',
-        icon: 'home',
-        viewUrl: '/sampleapp.html#/home',
-        children: [
-          {
-            pathSegment: 'sample1',
-            label: 'First',
-            icon: 'nutrition-activity',
-            viewUrl: '/sampleapp.html#/sample1'
-          },
-          {
-            pathSegment: 'sample2',
-            label: 'Second',
-            icon: 'paper-plane',
-            viewUrl: '/sampleapp.html#/sample2'
-          },
-           {
-            pathSegment: 'sample3',
-            label: 'Register form',
-            icon: 'paper-plane',
-            viewUrl: '/sampleapp.html#/sample3',
-          },
+import OpenIdConnect from '@luigi-project/plugin-auth-oidc';
+
+const myData = () => {
+  Luigi.setConfig({
+    // auth: {
+    //   use: 'openIdConnect',
+    //   openIdConnect: {
+    //     idpProvider: OpenIdConnect,
+    //     authority: 'https://localhost:3000.com',
+    //     client_id: 'client',
+    //     scope: 'audience:server:client_id:client openID profile email groups',
+    //     redirect_uri: '',
+    //     automaticSilentRenew: true,
+    //     accessTokenExpiringNotificationTime: 60,
+    //   },
+    //   disableAutoLogin: false,
+    // },
+    communication: {
+      customMessagesListeners: {
+        localmessage: function (customMessage) {
+          if (Object.keys(customMessage.message).length > 0) {
+            localStorage.setItem('StorageData', JSON.stringify(customMessage.message));
+            console.log(JSON.parse(localStorage.getItem('StorageData')));
+            console.log(`Local Storage Data: ${localStorage.getItem('StorageData')}`);
           }
-        ]
-      }
-    ]
-  },
-  settings: {
-    header: {
-      title: 'Luigi React App', icon: "paper-plane",
-      logo: '/logo.png'
+          Luigi.customMessages().sendToAll({
+            id: 'aye',
+            data: JSON.parse(localStorage.getItem('StorageData')),
+          });
+        },
+      },
     },
-    responsiveNavigation: 'simpleMobileOnly'
-  }
-});
+    navigation: {
+      nodes: () => [
+        {
+          pathSegment: 'home',
+          label: 'Home',
+          icon: 'home',
+          viewUrl: '/sampleapp.html#/home',
+          children: [
+            {
+              icon: 'paper-plane',
+              pathSegment: 'empty',
+              label: 'TicTacToe',
+              viewUrl: 'http://localhost:4001/',
+            },
+            {
+              icon: 'paper-plane',
+              pathSegment: 'home',
+              label: 'Login Form',
+              viewUrl: 'http://localhost:5173/',
+            },
+          ],
+        },
+      ],
+    },
+    settings: {
+      header: { title: 'Andy Portfolio' },
+      responsiveNavigation: 'simpleMobileOnly',
+    },
+  });
+};
+
+myData();

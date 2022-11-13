@@ -1,4 +1,4 @@
-import {OpenIdConnect} from "@luigi-project/plugin-auth-oidc"
+const {OpenIdConnect} = require('@luigi-project/plugin-auth-oidc');
 
 const myData = () => {
   Luigi.setConfig({
